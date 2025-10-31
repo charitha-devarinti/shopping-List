@@ -1,6 +1,6 @@
 const itemList=document.querySelector('#item-list');
 const addBtn=document.querySelector('.btn');
-const itemInput=document.querySelector('#item-input')
+const itemInput=document.querySelector('#item-input');
 
 
 function addItems(e){
@@ -8,10 +8,7 @@ function addItems(e){
     const inputValue= itemInput.value;
    
     if(itemInput.value.trim() ===''){
-      return  alertMessage();
-         
-         
-       
+      return  alertMessage();  
     } 
 
     const liEle=document.createElement('li');
@@ -52,4 +49,11 @@ function alertMessage(){
 
 }
 
+
+function removeItems(e){
+  if(e.target.parentElement.classList.contains('remove-item')){
+    e.target.parentElement.parentElement.remove();
+  }
+}
 addBtn.addEventListener('click',addItems);
+itemList.addEventListener('click',removeItems);
