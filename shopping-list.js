@@ -16,18 +16,33 @@ function addItems(e){
       return  alertMessage();  
     } 
 
-    const liEle=document.createElement('li');
-    const liText=document.createTextNode(`${inputValue}`);
+   creatingItems(inputValue)  ;
+
+    checkingUI();
+    
+    additemsToStorage(inputValue);
+
+     itemInput.value='';
+}
+
+function   creatingItems(item){
+  const liEle=document.createElement('li');
+    const liText=document.createTextNode(`${item}`);
    
     const button=createButton('remove-item btn-link text-red');
      liEle.appendChild(liText);
      liEle.appendChild(button);
      itemList.appendChild(liEle);
      
-  checkingUI();
-
-     itemInput.value='';
 }
+
+function additemsToStorage(item){
+    const storingItems=JSON.parse(localStorage.getItem('items'))||[];
+    storingItems.push(item);
+    localStorage.setItem('items',JSON.stringify(storingItems));
+    console.log(storingItems)
+}
+
 
 function createButton(classes){
    const button=document.createElement('button');
@@ -101,6 +116,10 @@ function filterItems(e){
            }
        })
 }
+
+
+
+
 
 itemForm.addEventListener('submit',addItems);
 itemList.addEventListener('click',removeItems);
