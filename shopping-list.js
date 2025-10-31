@@ -1,6 +1,7 @@
 const itemList=document.querySelector('#item-list');
 const addBtn=document.querySelector('.btn');
 const itemInput=document.querySelector('#item-input');
+const clearAllBtn=document.getElementById('clear')
 
 
 function addItems(e){
@@ -55,5 +56,15 @@ function removeItems(e){
     e.target.parentElement.parentElement.remove();
   }
 }
+
+function clearAll(){
+  while(itemList.firstChild){
+    itemList.removeChild(itemList.firstChild)
+  }
+ // itemList.innerHTML='';
+}
+
+
 addBtn.addEventListener('click',addItems);
 itemList.addEventListener('click',removeItems);
+clearAllBtn.addEventListener('click',clearAll);
